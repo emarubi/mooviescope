@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MovieList from './components/MovieList';
+import SearchBox from './components/SearchBox';
 
 function App() {
+  const [movies, setMovies] = useState<any>([])
+  const [searchValue, setSearchValue] = useState('');
+
+  const submitSearch = async () => {
+    console.log('searchValue', searchValue)
+    const result = await fetch('http://localhost:3030/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ search: searchValue })
+    })
+    const resultInJson = await result.json()
+    console.log('resultInJson', resultInJson)
+
+    fetch('http://localhost:3030/results')
+      .then(response => response.json())
+      .then((json) => {
+        console.log('json', json)
+        if (json.Search) {
+          setMovies(json.Search);
+        }
+      })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div id="navbar">
+        <h1>Mooviescope</h1>
+        <SearchBox searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          submitSearch={submitSearch} />
+      </div>
+      <MovieList movies={movies} />
     </div>
   );
 }
