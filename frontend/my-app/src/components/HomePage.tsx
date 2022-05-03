@@ -32,7 +32,7 @@ function HomePage() {
   }
 
   return (
-      <div className="homepage">
+      <>
         <div id="navbar">
           <h1>Mooviesfinder</h1>
           <SearchBox searchValue={searchValue}
@@ -40,7 +40,7 @@ function HomePage() {
             submitSearch={submitSearch} />
         </div>
         <MovieList movies={movies} />
-      </div>
+      </>
   );
 }
 

@@ -5,7 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #790707;
+  /* background: #790707; */
+  background: url('../public/stage.jpg');
+  object-fit: cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  background-size: cover;
   height: 100vh;
 }
 
