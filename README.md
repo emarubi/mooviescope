@@ -51,3 +51,8 @@ Nodejs must be installed
 ## Then run frontend React application
 - cd frontend/my-app
 - npm start
+
+# TODO * Coming soon 
+- Homepage with search input (as Google)
+- Movies list with search input in header
+- On click on a movie card, open details page
