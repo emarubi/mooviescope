@@ -1,4 +1,4 @@
-# mooviescope
+# mooviesfinder
 a node Js/ React Js project to search and retrieve movies from OMDB api
 
 🚀  **Goal**: Design a fullstack application searching the latest movies informations
