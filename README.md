@@ -48,6 +48,6 @@ Nodejs must be installed
 - copy env.example in .env and add your constants
 - npm start
 
-## Then run frrontend React application
+## Then run frontend React application
 - cd frontend/my-app
 - npm start
