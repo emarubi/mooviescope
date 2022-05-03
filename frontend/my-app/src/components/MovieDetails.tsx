@@ -1,24 +1,25 @@
 import React from 'react';
 
-import './MovieList.css'
+import './MovieDetails.css'
 
-export type MovieListProps = {
-    movies: [{
+export type MovieDetailsProps = {
+    movie: {
+        imdbID: string;
         Title: string;
         Year: string;
         Type: string;
         Poster: string;
-    }],
+        imdbRating: string;
+        plot: string;
+    },
 }   
 
-const MovieList: React.FC<MovieListProps> = ({
-    movies
+const MovieDetails: React.FC<MovieDetailsProps> = ({
+    movie
 }) => {
-    console.log('movies', movies)
+    console.log('movies', movie)
     return (
         <div className="container">
-            {movies &&
-                movies.map((movie: any) => (
                     <ol key={movie.imdbID} >
                         <div className='card'>
                             <div className='poster-box'>
@@ -29,10 +30,9 @@ const MovieList: React.FC<MovieListProps> = ({
                             <span className="card-description">Year: {movie.Year}</span>
                         </div>
                     </ol>
-                ))
-            }
+
         </div>
     );
 }
 
-export default MovieList;
+export default MovieDetails;
