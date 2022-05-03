@@ -1,7 +1,8 @@
 # mooviesfinder
+
 a node Js/ React Js project to search and retrieve movies from OMDB api
 
-🚀  **Goal**: Design a fullstack application searching the latest movies informations
+🚀 **Goal**: Design a fullstack application searching the latest movies informations
 
 **API**
 
@@ -17,22 +18,30 @@ a node Js/ React Js project to search and retrieve movies from OMDB api
 
 → Feel free to add any additional features you like
 
-🚧  **Constraints:**
+🚧 **Constraints:**
 
 - Use **Typescript**
 - **React** must be used for the UI
 - **Add at least one test** on your project
 - **Clear instructions on how to run the project** must be shipped along with the projet (to allow us to read your project correctly 🙂) - best is to have a **README.md** at the root of the git repository containing the instructions to run your code
 
-✏️  **Additional details:**
+✏️ **Additional details:**
 
 - Try making **regular commits** on your github repository, as if it was a real project
 - Add a small "todo" section on **what you would improve** at the end of your README
 - **Architecture** and **readability** are top criterias in the way we will assess your work
 
-📩  **Submission:**
+📩 **Submission:**
 
 The ideal submission format is the following:
 
 - A **link** to a Github repository (try if possible to have only 1 repository)
 - Any additional information that you feel is important to communicate 🙂
+
+# TO RUN APPLICATION
+
+## First start node server
+
+- cd backend
+- copy env.example in .env and add your constants
+- npm start
