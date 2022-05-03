@@ -20,7 +20,7 @@ router.get("/results", function (req, res) {
   // var query = req.query;
   var query = title
   console.log('query', query)
-  var url = `https://www.omdbapi.com/?s=${query}&apikey=7ccd8557`;
+  var url = `https://www.omdbapi.com/?s=${query}&apikey=${process.env.OMDB_KEY}`;
   console.log('url', url)
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
