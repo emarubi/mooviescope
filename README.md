@@ -39,9 +39,15 @@ The ideal submission format is the following:
 - Any additional information that you feel is important to communicate 🙂
 
 # TO RUN APPLICATION
+## First run Node js server
 
-## First start node server
-
+Nodejs must be installed
+- Clone this project 
 - cd backend
+- run "npm install" to download the dependancies
 - copy env.example in .env and add your constants
+- npm start
+
+## Then run frrontend React application
+- cd frontend/my-app
 - npm start
