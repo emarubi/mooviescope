@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import SearchBox from './SearchBox';
 import './HomePage.css';
 
-import MovieList from './MovieList';
-import SearchBox from './SearchBox';
-import MovieDetails from './MovieDetails';
 
 function HomePage() {
-  const [movies, setMovies] = useState<any>([])
+  const navigate = useNavigate()
   const [searchValue, setSearchValue] = useState('');
 
   const submitSearch = async () => {
@@ -20,27 +20,19 @@ function HomePage() {
     })
     const resultInJson = await result.json()
     console.log('resultInJson', resultInJson)
-
-    fetch('http://localhost:3030/results')
-      .then(response => response.json())
-      .then((json) => {
-        console.log('json', json)
-        if (json.Search) {
-          setMovies(json.Search);
-        }
-      })
+    navigate("/movies", { state: { searchString: resultInJson }});
   }
 
   return (
-      <>
+      <div className="container">
         <div id="navbar">
           <h1>Mooviesfinder</h1>
           <SearchBox searchValue={searchValue}
             setSearchValue={setSearchValue}
             submitSearch={submitSearch} />
         </div>
-        <MovieList movies={movies} />
-      </>
+        {/* <MovieList movies={movies} /> */}
+      </div>
   );
 }
 

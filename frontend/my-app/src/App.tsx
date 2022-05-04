@@ -14,7 +14,7 @@ function App(props: any) {
       <div className="App">
         <Routes>
           <Route path="/movie/:id" element={<MovieDetails movie={props.movie} />} />
-          <Route path="/movies" element={<MovieList movies={props.movies} />} />
+          <Route path="/movies" element={<MovieList searchString={props.searchString} />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </div>
