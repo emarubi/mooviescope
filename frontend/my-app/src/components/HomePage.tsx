@@ -20,7 +20,7 @@ function HomePage() {
     })
     const resultInJson = await result.json()
     console.log('resultInJson', resultInJson)
-    navigate("/movies", { state: { searchString: resultInJson }});
+    navigate("/movies", { state: { searchString: searchValue }});
   }
 
   return (
@@ -31,7 +31,6 @@ function HomePage() {
             setSearchValue={setSearchValue}
             submitSearch={submitSearch} />
         </div>
-        {/* <MovieList movies={movies} /> */}
       </div>
   );
 }

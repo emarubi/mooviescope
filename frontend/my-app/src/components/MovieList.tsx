@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import SearchBox from './SearchBox';
 import './MovieList.css'
 
@@ -20,7 +22,6 @@ const MovieList: React.FC<MovieListProps> = ({
         console.log('json', json)
         if (json.Search) {
             setMovies(json.Search);
-            // navigate("/movies", { state: { movies: 'test' }});
         }
         })
     }, [])
@@ -46,7 +47,6 @@ const MovieList: React.FC<MovieListProps> = ({
         }
         })
     }
-    
 
     return (
         <>
@@ -59,7 +59,7 @@ const MovieList: React.FC<MovieListProps> = ({
             <div className="container">
                 {movies &&
                     movies.map((movie: any) => (
-                        <ol key={movie.imdbID} >
+                        <Link to={`/movie/${movie.imdbID}`} key={movie.imdbID} >
                             <div className='card'>
                                 <div className='poster-box'>
                                     <img className="poster" src={movie.Poster} alt={`${movie.Title} poster`} />
@@ -68,7 +68,7 @@ const MovieList: React.FC<MovieListProps> = ({
                                 <span className="card-description">{movie.Type}</span>
                                 <span className="card-description">Year: {movie.Year}</span>
                             </div>
-                        </ol>
+                        </Link>
                     ))
                 }
             </div>
