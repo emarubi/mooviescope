@@ -10,12 +10,13 @@ router.post("/", function (req, res) {
   //response.render("search");
   query = req.body.search.replaceAll(' ', '+');
   res.send({
-    search: queryString
+    search: query
   });
   console.log('query', query)
 });
 
 router.get("/results", function (req, res) {
+  console.log('query', query)
   var url = `https://www.omdbapi.com/?${query}&apikey=${process.env.OMDB_KEY}`;
   console.log('url', url)
   request(url, function (error, response, body) {

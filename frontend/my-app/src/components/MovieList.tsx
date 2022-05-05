@@ -51,7 +51,7 @@ const MovieList: React.FC<MovieListProps> = ({
     return (
         <>
             <div id="navbar">
-            <h1>Mooviesfinder</h1>
+            <h1>Moviefinder</h1>
             <SearchBox searchValue={searchString}
                 setSearchValue={setSearchValue}
                 submitSearch={submitSearch} />

@@ -13,9 +13,9 @@ const SearchBox = (props:any) => {
                 placeholder='Type to search...'
                 required
 			></input>
-             <button type="submit" onClick={props.submitSearch}>
-                Search
-             </button>
+			<button type="submit" onClick={props.submitSearch}>
+				Search
+			</button>
 		</div>
 	);
 };

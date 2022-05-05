@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import './MovieDetails.css'
 
-export type MovieDetailsProps = {
-    // movie: {
-    //     imdbID: string;
-    //     Title: string;
-    //     Year: string;
-    //     Type: string;
-    //     Poster: string;
-    //     imdbRating: string;
-    //     plot: string;
-    // },
-}   
-
-const MovieDetails: React.FC<MovieDetailsProps> = () => {
-    const [movie, setMovie] = useState<any>([])
+const MovieDetails = () => {
+    const [movie, setMovie] = useState<any>()
     const param = useParams();
-    console.log('param', param);
+    const navigate = useNavigate();
 
     const submitSearch = async () => {
         console.log('searchValue', param.id)
-        const result = await fetch('http://localhost:3030/', {
+        const result = await fetch('http://localhost:4000/', {
             method: 'POST',
             headers: {
             "Content-Type": "application/json",
@@ -32,12 +20,13 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
         const resultInJson = await result.json()
         console.log('resultInJson', resultInJson)
 
-        fetch('http://localhost:3030/results')
+        fetch('http://localhost:4000/results')
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)
-        if (json.Search) {
-            setMovie(json.Search);
+        if (json) {
+            setMovie(json);
+            console.log('movie', movie)
         } else if (json.error) {
             console.log('error', json.error)
         }
@@ -47,21 +36,38 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
     useEffect(() => {
         submitSearch()
     },[])
+    
+    const handleClick = () => {
+        navigate(-1)
+    }
 
+console.log('movie', movie)
     return (
-        <div className="container">
-                    <ol key={movie.imdbID} >
-                        <div className='card'>
-                            <div className='poster-box'>
-                                <img className="poster" src={movie.Poster} alt={`${movie.Title} poster`} />
-                            </div>
-                            <p className='card-title'>{movie.Title}</p>
-                            <span className="card-description">{movie.Type}</span>
-                            <span className="card-description">Year: {movie.Year}</span>
-                        </div>
-                    </ol>
+        <>
+            <button type="button" onClick={handleClick} className="details__button">
+                    Back
+                </button>
+            <div className="details__container">
+                <div className='details__card'>
+                    <div className='details__poster-box'>
+                        <img className="details__poster" src={movie?.Poster} alt={`${movie?.Title} poster`} />
+                    </div>
+                    <div className="details__box">
+                        <p className='details__box-title'>{movie?.Title}</p>
+                        <span className="details__box-description">{movie?.Type}</span>
+                        <span className="details__box-description">Year: {movie?.Year}</span>
+                        <span className='details__box-description'>Writer: {movie?.Writer}</span>
+                        <span className='details__box-description'>Director: {movie?.Director}</span>
+                        <span className='details__box-description'>Actors: {movie?.Actors}</span>
+                        <span className='details__box-description'>Country: {movie?.Country}</span>
+                        <span className='details__box-description'>Awards: {movie?.Awards}</span>
+                        <span className='details__box-description'>Runtime: {movie?.Runtime}</span>
+                        <p className='details__box-content'>Plot: {movie?.Plot}</p>
+                    </div>
+                </div>
 
-        </div>
+            </div>
+        </>
     );
 }
 

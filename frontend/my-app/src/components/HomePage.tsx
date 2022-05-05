@@ -26,7 +26,7 @@ function HomePage() {
   return (
       <div className="container">
         <div id="navbar">
-          <h1>Mooviesfinder</h1>
+          <h1>Moviefinder</h1>
           <SearchBox searchValue={searchValue}
             setSearchValue={setSearchValue}
             submitSearch={submitSearch} />
