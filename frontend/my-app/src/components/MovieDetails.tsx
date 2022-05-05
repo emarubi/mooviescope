@@ -5,6 +5,7 @@ import './MovieDetails.css'
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState<any>()
+    const [errorMessage, setErrorMessage] = useState<string>('');
     const param = useParams();
     const navigate = useNavigate();
 
@@ -28,7 +29,8 @@ const MovieDetails = () => {
             setMovie(json);
             console.log('movie', movie)
         } else if (json.error) {
-            console.log('error', json.error)
+            console.log('error', json.Error)
+            setErrorMessage(json.Error);
         }
         })
     }
@@ -46,7 +48,10 @@ console.log('movie', movie)
         <>
             <button type="button" onClick={handleClick} className="details__button">
                     Back
-                </button>
+            </button>
+            {errorMessage && 
+                <p className='error'>{errorMessage}</p>
+            }
             <div className="details__container">
                 <div className='details__card'>
                     <div className='details__poster-box'>

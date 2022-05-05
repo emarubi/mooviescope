@@ -20,19 +20,10 @@ router.post("/", function (req, res) {
 
 
 router.get("/movies", async (req, res) => {
-  queryString=`s=${queryString}`
   const { data } = await axios.get(
-    `https://www.omdbapi.com/?${queryString}&apikey=${process.env.OMDB_KEY}`
+    `https://www.omdbapi.com/?s=${queryString}&apikey=${process.env.OMDB_KEY}`
     )
-res.json(data)
-  // var url = `https://www.omdbapi.com/?${queryString}&apikey=${process.env.OMDB_KEY}`;
-  // console.log('url', url)
-  // request(url, function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     var data = JSON.parse(body)
-  //     res.json(data);
-  //   }
-  // });
+  res.json(data)
 });
 
 router.get("/movies/:id", async (req, res) => {
@@ -72,17 +63,6 @@ router.get("/movies/:id", async (req, res) => {
 //     //   res.json(data);
 //     // }
 //   // });
-
-  router.get("/results/:id", async (req, res) => {
-    const movie = await getOrSetCache(`results:${req.params.id}`, async () => {
-      console.log('req.params.id', req.params.id)
-      const { data } = await axios.get(
-        `https://www.omdbapi.com/?i=${req.params.id}&apikey=${process.env.OMDB_KEY}`
-        )
-        return data
-    })
-    res.json(movie)
-  })
 
 function getOrSetCache(key, callback) {
   return new Promise((resolve, reject) => {

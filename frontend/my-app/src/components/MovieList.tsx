@@ -14,6 +14,7 @@ const MovieList: React.FC<MovieListProps> = ({
     console.log('searchString', searchString)
     const [movies, setMovies] = useState<any>([])
     const [searchValue, setSearchValue] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:4000/movies')
@@ -44,6 +45,8 @@ const MovieList: React.FC<MovieListProps> = ({
         console.log('json', json)
         if (json.Search) {
             setMovies(json.Search);
+        } else if (json.Error) {
+            setErrorMessage(json.Error);
         }
         })
     }
@@ -56,6 +59,9 @@ const MovieList: React.FC<MovieListProps> = ({
                 setSearchValue={setSearchValue}
                 submitSearch={submitSearch} />
             </div>
+            {errorMessage && 
+                <p className='error'>{errorMessage}</p>
+            }
             <div className="container">
                 {movies &&
                     movies.map((movie: any) => (
