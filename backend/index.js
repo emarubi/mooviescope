@@ -1,29 +1,42 @@
 const dotenv = require('dotenv')
 dotenv.config();
 const cors = require('cors')
+const Redis = require('redis')
 
-const PORT = process.env.PORT || 4000;
+// const runApp = async () =>  {
 
-const express = require('express')
-const app = express()
-const path = require('path')
+    const PORT = process.env.PORT || 4000;
 
-app.use(cors("*"))
+    // const DEFAULT_EXPIRATION = 86400
+    // const client = Redis.createClient()
+    // client.on('error', (err) => console.log('Redis Client Error', err));
+    // await client.connect();
+    // console.log('Redis connected!')
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+    const express = require('express')
+    const app = express()
+    const path = require('path')
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+    app.use(cors("*"))
 
-const router = require('./app/router')
-app.use(router)
+    var bodyParser = require('body-parser');
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('views', path.join(__dirname, 'app/views'))
-app.set('view engine', 'ejs')
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
+    const router = require('./app/router')
+    app.use(router)
+
+    app.set('views', path.join(__dirname, 'app/views'))
+    app.set('view engine', 'ejs')
 
 
-app.listen(PORT, () => {
-    console.log(`server started at port ${PORT}`)
-})
+    app.listen(PORT, () => {
+        console.log(`server started at port ${PORT}`)
+    })
+// }
+
+
+// runApp()
