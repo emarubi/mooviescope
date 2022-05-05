@@ -55,8 +55,9 @@ Nodejs must be installed
 - cd frontend/my-app
 - npm start
 
-# TODO \* Coming soon
+# TODO ** Coming soon
 
+- Deploy on Heroku
 - Pagination managing
 - Blog
 - Authentication
