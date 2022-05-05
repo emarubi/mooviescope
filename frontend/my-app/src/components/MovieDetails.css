@@ -62,7 +62,7 @@
 }
 
 .details__poster-box {
-  /* width: 30%; */
+  width: 30%;
   overflow: hidden;
   position: relative;
   background: black;

@@ -16,7 +16,7 @@ const MovieList: React.FC<MovieListProps> = ({
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:3030/results')
+        fetch('http://localhost:4000/movies')
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)
@@ -28,7 +28,7 @@ const MovieList: React.FC<MovieListProps> = ({
 
     const submitSearch = async () => {
         console.log('searchValue', searchValue)
-        const result = await fetch('http://localhost:3030/', {
+        const result = await fetch('http://localhost:4000/', {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const MovieList: React.FC<MovieListProps> = ({
         const resultInJson = await result.json()
         console.log('resultInJson', resultInJson)
 
-        fetch('http://localhost:3030/results')
+        fetch('http://localhost:4000/movies')
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)
@@ -51,7 +51,7 @@ const MovieList: React.FC<MovieListProps> = ({
     return (
         <>
             <div id="navbar">
-            <h1>Moviefinder</h1>
+            <h1>Mooviz</h1>
             <SearchBox searchValue={searchString}
                 setSearchValue={setSearchValue}
                 submitSearch={submitSearch} />

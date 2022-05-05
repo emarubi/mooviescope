@@ -15,12 +15,12 @@ const MovieDetails = () => {
             headers: {
             "Content-Type": "application/json",
             },
-            body: JSON.stringify({ search: "i=" + param.id })
+            body: JSON.stringify({ search: param.id })
         })
         const resultInJson = await result.json()
         console.log('resultInJson', resultInJson)
 
-        fetch('http://localhost:4000/results')
+        fetch(`http://localhost:4000/movies/${param.id}`)
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)

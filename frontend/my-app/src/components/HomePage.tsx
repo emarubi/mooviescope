@@ -11,7 +11,7 @@ function HomePage() {
 
   const submitSearch = async () => {
     console.log('searchValue', searchValue)
-    const result = await fetch('http://localhost:3030/', {
+    const result = await fetch('http://localhost:4000/', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function HomePage() {
   return (
       <div className="container">
         <div id="navbar">
-          <h1>Moviefinder</h1>
+          <h1>Mooviz</h1>
           <SearchBox searchValue={searchValue}
             setSearchValue={setSearchValue}
             submitSearch={submitSearch} />
