@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SearchBox from './SearchBox';
-import './HomePage.css';
+import SearchBox from '../SearchBox';
+import './styles.css';
 
 
 function HomePage() {

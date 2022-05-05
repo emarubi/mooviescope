@@ -7,12 +7,6 @@ const Redis = require('redis')
 
     const PORT = process.env.PORT || 4000;
 
-    // const DEFAULT_EXPIRATION = 86400
-    // const client = Redis.createClient()
-    // client.on('error', (err) => console.log('Redis Client Error', err));
-    // await client.connect();
-    // console.log('Redis connected!')
-
     const express = require('express')
     const app = express()
     const path = require('path')

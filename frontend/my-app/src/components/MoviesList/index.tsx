@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import SearchBox from './SearchBox';
-import './MovieList.css'
+import SearchBox from '../SearchBox';
+import './styles.css'
 
 export type MovieListProps = {
     searchString: string;

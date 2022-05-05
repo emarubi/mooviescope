@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 
-import './MovieDetails.css'
+import './styles.css'
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState<any>()
@@ -10,7 +10,7 @@ const MovieDetails = () => {
     const navigate = useNavigate();
 
     const submitSearch = async () => {
-        console.log('searchValue', param.id)
+        console.log('param.id', param.id)
         const result = await fetch('http://localhost:4000/', {
             method: 'POST',
             headers: {

@@ -30,7 +30,7 @@ router.get('/movies', async (req, res) =>{
     const response = await axios.get(`https://www.omdbapi.com/?s=${queryString}&apikey=${process.env.OMDB_KEY}`)
 
     await client.set('cacheMovies', JSON.stringify(response.data))
-    client.expire('cacheMovies', 360)
+    client.expire('cacheMovies', DEFAULT_EXPIRATION)
     return res.status(200).json(response.data)
 
 })
@@ -49,6 +49,7 @@ router.get('/movies/:id', async (req, res) => {
           )
 
     await client.set('cacheMovie' + req.params.id, JSON.stringify(response.data))
+    client.expire('cacheMovie', DEFAULT_EXPIRATION)
     return res.json(response.data)
 
   } catch (err) {
