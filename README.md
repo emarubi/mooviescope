@@ -42,7 +42,9 @@ The ideal submission format is the following:
 
 ## First run Node js server
 
-Nodejs must be installed
+Nodejs and Redis must be installed
+Sign in to https://www.omdbapi.com/ to receive a key to append to your API requests
+The OMDB key should be in the .env on your BACKEND repository
 
 - Clone this project
 - cd backend
@@ -55,7 +57,7 @@ Nodejs must be installed
 - cd frontend/my-app
 - npm start
 
-# TODO ** Coming soon
+# TODO \*\* Coming soon
 
 - Deploy on Heroku
 - Pagination managing

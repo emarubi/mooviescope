@@ -7,6 +7,7 @@ const SearchBox = (props:any) => {
 	return (
 		<div className='col col-sm-4'>
 			<input
+				name="input"
 				className='movie-input'
 				value={props.value}
 				onChange={(event) => props.setSearchValue(event.target.value)}
