@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import SearchBox from '../SearchBox';
@@ -7,11 +7,18 @@ import './styles.css';
 
 function HomePage() {
   const navigate = useNavigate()
-  const [searchValue, setSearchValue] = useState('');
+
+  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
+
+  useEffect(() => {
+    window.localStorage.setItem('searchValue', searchValue);
+  }, [searchValue]);
+  console.log('localStorage', localStorage)
 
   const submitSearch = async () => {
     console.log('searchValue', searchValue)
-    const result = await fetch('http://localhost:4000/', {
+    window.localStorage.setItem('searchValue', searchValue);
+    const result = await fetch(`http://localhost:4000/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

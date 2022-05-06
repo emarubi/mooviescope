@@ -4,17 +4,11 @@ import { Link } from 'react-router-dom';
 import SearchBox from '../SearchBox';
 import './styles.css'
 
-export type MovieListProps = {
-    searchString: string;
-}   
+const MovieList = () => {
 
-const MovieList: React.FC<MovieListProps> = ({
-    searchString
-}) => {
-    console.log('searchString', searchString)
     const [movies, setMovies] = useState<any>([])
-    const [searchValue, setSearchValue] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     useEffect(() => {
         fetch('http://localhost:4000/movies')
@@ -25,10 +19,12 @@ const MovieList: React.FC<MovieListProps> = ({
             setMovies(json.Search);
         }
         })
-    }, [])
+        window.localStorage.setItem('searchValue', searchValue);
+        submitSearch()
+    }, [searchValue])
 
     const submitSearch = async () => {
-        console.log('searchValue', searchValue)
+        window.localStorage.setItem('searchValue', searchValue);
         const result = await fetch('http://localhost:4000/', {
           method: 'POST',
           headers: {
@@ -46,6 +42,7 @@ const MovieList: React.FC<MovieListProps> = ({
         if (json.Search) {
             setMovies(json.Search);
         } else if (json.Error) {
+            localStorage.setItem((searchValue), '')
             setErrorMessage(json.Error);
         }
         })
@@ -55,7 +52,7 @@ const MovieList: React.FC<MovieListProps> = ({
         <>
             <div id="navbar">
             <h1>Mooviz</h1>
-            <SearchBox searchValue={searchString}
+            <SearchBox searchValue={searchValue}
                 setSearchValue={setSearchValue}
                 submitSearch={submitSearch} />
             </div>
