@@ -2,7 +2,17 @@ import React from 'react';
 
 import './styles.css'
 
-const SearchBox = (props:any) => {
+type SearchBoxProps = {
+	submitSearch: () => void;
+	searchValue: string;
+	setSearchValue: (e: string ) => void;
+}
+
+const SearchBox: React.FC<SearchBoxProps> = ({		
+	submitSearch,
+	searchValue,
+	setSearchValue,
+}) => {
 
 	return (
 		<div className='col col-sm-4'>
@@ -10,12 +20,12 @@ const SearchBox = (props:any) => {
 				name="input"
 				data-testid='movie-input'
 				className='movie-input'
-				value={props.value}
-				onChange={(event) => props.setSearchValue(event.target.value)}
+				value={searchValue}
+				onChange={(event) => setSearchValue(event.target.value)}
                 placeholder='Type to search...'
                 required
 			></input>
-			<button type="submit" onClick={props.submitSearch}>
+			<button type="submit" onClick={submitSearch}>
 				Search
 			</button>
 		</div>

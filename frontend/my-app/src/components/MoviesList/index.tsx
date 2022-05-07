@@ -5,9 +5,13 @@ import { REACT_APP_API_URL } from '../HomePage';
 import SearchBox from '../SearchBox';
 import './styles.css'
 
+import { Movie } from '../MovieDetails';
+
+export type Movies = Movie[]
+
 const MovieList = () => {
 
-    const [movies, setMovies] = useState<any>([])
+    const [movies, setMovies] = useState<Movies>([])
     const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
     const [errorMessage, setErrorMessage] = useState<string>('');
 

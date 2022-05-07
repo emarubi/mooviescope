@@ -5,31 +5,35 @@ describe("<SearchBox />", () => {
 
   describe("when rendered with a `submitSearch` prop", () => {
     it("should paste it into the input", () => {
-
+      const setSearchValueMock = jest.fn();
+      const submitSearchMock = jest.fn();
       render(
         <SearchBox 
-          submitSearch="Hello" 
-          // setSearchValue={setSearchValueMock}
+          searchValue="Hello" 
+          setSearchValue={setSearchValueMock}
+          submitSearch={submitSearchMock}
         />
       ); 
 
       expect(screen.getByRole('textbox')).toHaveValue("Hello")
+
     });
   });
 
-
   describe("when the button is pressed", () => {
-    it("should call the `setSearchValue` callback", () => {
+    it("should call the `submitSearch` callback", () => {
       const setSearchValueMock = jest.fn();
+      const submitSearchMock = jest.fn();
       render(
         <SearchBox 
-          submitSearch="Test Name" 
-          setSearchValue={setSearchValueMock} />
+          searchValue="Test Name" 
+          setSearchValue={setSearchValueMock}
+          submitSearch={submitSearchMock}
+        />
       );
 
       fireEvent.click(screen.getByRole("button"));
-      expect(setSearchValueMock).toHaveBeenCalledWith(
-        "Test Name");
+      expect(submitSearchMock).toHaveBeenCalled();
     });
   });
 });

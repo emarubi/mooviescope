@@ -4,8 +4,23 @@ import { REACT_APP_API_URL } from '../HomePage';
 
 import './styles.css'
 
+export type Movie = {
+    imdbID: string;
+    Poster?: string;
+    Title: string;
+    Type?: string;
+    Year?: string;
+    Writer?: string;
+    Director?: string;
+    Actors?: string;
+    Country?: string;
+    Awards?: string;
+    Runtime?: string;
+    Plot?: string;
+}
+
 const MovieDetails = () => {
-    const [movie, setMovie] = useState<any>()
+    const [movie, setMovie] = useState<Movie>()
     const [errorMessage, setErrorMessage] = useState<string>('');
     const param = useParams();
     const navigate = useNavigate();
