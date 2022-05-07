@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import SearchBox from '../SearchBox';
 import './styles.css';
 
+export const { REACT_APP_API_URL } = process.env;
+console.log('REACT_APP_API_URL', REACT_APP_API_URL)
 
 function HomePage() {
   const navigate = useNavigate()
@@ -18,7 +20,7 @@ function HomePage() {
   const submitSearch = async () => {
     console.log('searchValue', searchValue)
     window.localStorage.setItem('searchValue', searchValue);
-    const result = await fetch(`http://localhost:4000/`, {
+    const result = await fetch(`${REACT_APP_API_URL}/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

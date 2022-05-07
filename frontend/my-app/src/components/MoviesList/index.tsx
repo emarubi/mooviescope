@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { REACT_APP_API_URL } from '../HomePage';
 
 import SearchBox from '../SearchBox';
 import './styles.css'
@@ -11,7 +12,7 @@ const MovieList = () => {
     const [errorMessage, setErrorMessage] = useState<string>('');
 
     useEffect(() => {
-        fetch('http://localhost:4000/movies')
+        fetch(`${REACT_APP_API_URL}/movies`)
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)
@@ -25,7 +26,7 @@ const MovieList = () => {
 
     const submitSearch = async () => {
         window.localStorage.setItem('searchValue', searchValue);
-        const result = await fetch('http://localhost:4000/', {
+        const result = await fetch(`${REACT_APP_API_URL}/`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -35,7 +36,7 @@ const MovieList = () => {
         const resultInJson = await result.json()
         console.log('resultInJson', resultInJson)
 
-        fetch('http://localhost:4000/movies')
+        fetch(`${REACT_APP_API_URL}/movies`)
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
+import { REACT_APP_API_URL } from '../HomePage';
 
 import './styles.css'
 
@@ -11,7 +12,7 @@ const MovieDetails = () => {
 
     const submitSearch = async () => {
         console.log('param.id', param.id)
-        const result = await fetch('http://localhost:4000/', {
+        const result = await fetch(`${REACT_APP_API_URL}/`, {
             method: 'POST',
             headers: {
             "Content-Type": "application/json",
@@ -21,7 +22,7 @@ const MovieDetails = () => {
         const resultInJson = await result.json()
         console.log('resultInJson', resultInJson)
 
-        fetch(`http://localhost:4000/movies/${param.id}`)
+        fetch(`${REACT_APP_API_URL}/movies/${param.id}`)
         .then(response => response.json())
         .then((json) => {
         console.log('json', json)
